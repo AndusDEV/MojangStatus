@@ -29,3 +29,5 @@ The [Mojang-API](https://github.com/KevinPriv/MojangAPI) supports only the Full 
 For ex. My full UUID is: **_03776c03-4494-4e30-b2e4-6701c05aeb00_**.
 
 You can get your UUID from sites like [MCUUID](https://mcuuid.net/).
+
+## I'm not associated with Mojang. I'm just creating program based on their API.
