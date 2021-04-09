@@ -1,7 +1,7 @@
 # MojangStatus
  Showing players and mojang status
  
- Used: [Mojang-API](https://github.com/KevinPriv/MojangAPI)
+ Used: [Mojang-API](https://github.com/KevinPriv/MojangAPI), [Gson](https://github.com/google/gson), [Mcsrvstat.us API v2](https://api.mcsrvstat.us/)
  
  # Installation:
  
