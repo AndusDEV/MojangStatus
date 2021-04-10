@@ -1,6 +1,5 @@
 package pl.andus.mojangstatus;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -22,10 +21,10 @@ public class Main {
         int i = 0;
         while (i < 5) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("MojangStatus v1.1");
+            System.out.println("MojangStatus v1.1.1");
             System.out.println("Co chcesz zobaczyć?");
             System.out.println("(Status Mojang, Gracz, Serwer Minecraft)");
-            System.out.println("(Możesz też napisać to krócej: SM, Gr, MC");
+            System.out.println("(Możesz też napisać to krócej: SM, Gr, MC)");
 
             String wpisane = scanner.nextLine();
 
@@ -84,24 +83,83 @@ public class Main {
                 JsonElement jsonEl = jp.parse(new InputStreamReader((InputStream) request.getContent()));
                 JsonObject jsonObj = jsonEl.getAsJsonObject();
 
-                //Strings (All data about server)
+                //Strings & JsonElements (All data about server)
                 String ip = jsonObj.get("ip").getAsString();
                 String hostname = jsonObj.get("hostname").getAsString();
                 String port = jsonObj.get("port").getAsString();
                 String software;
                 String ver = jsonObj.get("version").getAsString();
+                String isOnline = jsonObj.get("online").getAsString();
+                String prot = jsonObj.get("protocol").getAsString();
+                //motd
+                JsonElement motdJson = jsonObj.get("motd");
+                String motd = new String(String.valueOf(motdJson));
+                String motdCl = null;
+                //debug
+                JsonElement debugJson = jsonObj.get("debug");
+                String debug = new String(String.valueOf(debugJson));
+                String debugQuery = null;
+                //players
+                JsonElement playersJson = jsonObj.get("players");
+                String players = new String(String.valueOf(playersJson));
+                String plOnline;
 
-                //If there is no software/debug info:
+
+                //If there is no software info:
                 if (jsonObj.has("software")) {
                     software = jsonObj.get("software").getAsString();
                 } else {
                     software = "brak danych";
+                }
+                //If online is true/false / there is no online info:
+                if (isOnline.equals("true")) {
+                    isOnline = "tak";
+                } else if (isOnline.equals("false")) {
+                    isOnline = "nie";
+                } else {
+                    isOnline = "Brak danych";
+                }
+                //If motd contains clean:
+                if (motd.contains("\"clean\":[")) {
+                    motd = motd.substring(motd.indexOf("\"clean\""), motd.lastIndexOf("],"));
+                    motdCl = motd.replace("\"clean\":[", "");
+                }
+                //If debug contains query info:
+                if (debug.contains("query")) {
+                    debug = debug.substring(debug.indexOf("\"query\":"), debug.lastIndexOf(",\"srv"));
+                    debugQuery = debug.replace("\"query\":", "");
+
+                    if (debugQuery.equals("false")) {
+                        debugQuery = "wyłączone";
+                    } else if (debugQuery.equals("true")) {
+                        debugQuery = "włączone";
+                    } else {
+                        debugQuery = "brak danych";
+                    }
+                }
+                //If players contains max & online:
+                if (players.contains("online") || players.contains("max")) {
+                    players = players.substring(players.indexOf("\"online\":"), players.lastIndexOf(",\"max"));
+                    plOnline = players.replace("\"online\":", "");
+                } else {
+                    plOnline = "brak danych";
                 }
 
                 //Show JSON data
                 System.out.println("IP: " + hostname + ", " + ip + ":" + port);
                 System.out.println(" ");
                 System.out.println("Wersja: " + software + " | " + ver);
+                System.out.println(" ");
+                System.out.println("Online: " + isOnline);
+                System.out.println(" ");
+                System.out.println("Protokół: " + prot);
+                System.out.println(" ");
+                System.out.println("MOTD: " + motdCl);
+                System.out.println(" ");
+                System.out.println("Debug: ");
+                System.out.println("   Query: " + debugQuery);
+                System.out.println(" ");
+                System.out.println("Gracze aktualnie na serwerze: " + plOnline);
                 System.out.println(" ");
             } else {
                 System.out.println("Zła wartość!");
