@@ -16,59 +16,73 @@ import java.util.UUID;
 
 public class Main {
 
+    //Colors
+    public static final String C_RESET = "\u001B[0m";
+    public static final String C_BLACK = "\u001B[30m";
+    public static final String C_RED = "\u001B[31m";
+    public static final String C_GREEN = "\u001B[32m";
+    public static final String C_YELLOW = "\u001B[33m";
+    public static final String C_BLUE = "\u001B[34m";
+    public static final String C_PURPLE = "\u001B[35m";
+    public static final String C_CYAN = "\u001B[36m";
+    public static final String C_WHITE = "\u001B[37m";
+
     @SuppressWarnings("deprecation")
     public static void main(String[] args) throws Exception {
         int i = 0;
         while (i < 5) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("MojangStatus v1.1.1");
-            System.out.println("Co chcesz zobaczyć?");
-            System.out.println("(Status Mojang, Gracz, Serwer Minecraft)");
-            System.out.println("(Możesz też napisać to krócej: SM, Gr, MC)");
+            System.out.println(C_CYAN + "MojangStatus v1.1.2");
+            System.out.println(C_PURPLE + "Co chcesz zobaczyć?");
+            System.out.println(C_PURPLE + "(Status Mojang, Gracz, Serwer Minecraft)");
+            System.out.println(C_PURPLE + "(Możesz też napisać to krócej: SM, Gr, MC)");
 
             String wpisane = scanner.nextLine();
 
             if (wpisane.equals("Status Mojang")||wpisane.equals("SM")) {
-                System.out.println("Status Serwerów Mojang: ");
+                final String status = null;
+                System.out.println(C_CYAN + "Status Serwerów Mojang: ");
                 System.out.println(" ");
                 MojangAPI.getStatus().forEach((url, state) ->
-                        System.out.println(url + " jest aktualnie w stanie: " + state + "!")
-                );
+                        System.out.println(C_PURPLE + url + " jest aktualnie w stanie: " + state + "!"));
+                System.out.println(C_RED + "-(Koniec polecenia)-");
             } else if (wpisane.equals("Gracz")||wpisane.equals("Gr")) {
-                System.out.println("Jak chcesz znaleźć gracza?");
-                System.out.println("(UUID, Nick)");
+                System.out.println(C_PURPLE + "Jak chcesz znaleźć gracza?");
+                System.out.println(C_PURPLE + "(UUID, Nick)");
 
                 String UUIDorName = scanner.nextLine();
 
                 if (UUIDorName.equals("Nick")) {
-                    System.out.println("Podaj nazwę gracza:");
+                    System.out.println(C_PURPLE + "Podaj nazwę gracza:");
 
                     String graczName = scanner.nextLine();
 
-                    System.out.println("------Gracz " + graczName + "-----");
+                    System.out.println(C_CYAN + "------Gracz " + graczName + "-----");
                     Profile nickProfile = MojangAPI.getProfile(graczName);
-                    System.out.println("Nick: " + nickProfile.getName());
-                    System.out.println("ID: " + nickProfile.getId());
-                    System.out.println("URL do skórki: " + nickProfile.getTextures().getTextures().getSkin().getUrl());
-                    System.out.println("-----------------------------------\n");
+                    System.out.println(C_CYAN + "Nick: " + nickProfile.getName());
+                    System.out.println(C_CYAN + "ID: " + nickProfile.getId());
+                    System.out.println(C_CYAN + "URL do skórki: " + nickProfile.getTextures().getTextures().getSkin().getUrl());
+                    System.out.println(C_CYAN + "-----------------------------------\n");
+                    System.out.println(C_RED + "-(Koniec polecenia)-");
 
                 } else if (UUIDorName.equals("UUID")) {
                     System.out.println("Podaj UUID gracza:");
 
                     String graczUUID = scanner.nextLine();
 
-                    System.out.println("------UUID " + graczUUID + "-----");
+                    System.out.println(C_CYAN + "------UUID " + graczUUID + "-----");
                     Profile uuidProfile = MojangAPI.getProfile(UUID.fromString(graczUUID));
-                    System.out.println("Nick: " + uuidProfile.getName());
-                    System.out.println("ID: " + uuidProfile.getId());
-                    System.out.println("URL do skórki: " + uuidProfile.getTextures().getTextures().getSkin().getUrl());
-                    System.out.println("-----------------------------------\n");
+                    System.out.println(C_CYAN + "Nick: " + uuidProfile.getName());
+                    System.out.println(C_CYAN + "ID: " + uuidProfile.getId());
+                    System.out.println(C_CYAN + "URL do skórki: " + uuidProfile.getTextures().getTextures().getSkin().getUrl());
+                    System.out.println(C_CYAN + "-----------------------------------\n");
+                    System.out.println(C_RED + "-(Koniec polecenia)-");
                 } else {
-                    System.out.println("Zła wartość");
-                    System.out.println("Nie rozumiem");
+                    System.out.println(C_RED + "Zła wartość!");
+                    System.out.println(C_RED + "Nie rozumiem.");
                 }
             } else if (wpisane.equals("Serwer Minecraft")||wpisane.equals("MC")){
-                System.out.println("Podaj IP serwera:");
+                System.out.println(C_PURPLE + "Podaj IP serwera:");
 
                 String srvURL = "https://api.mcsrvstat.us/2/" + scanner.nextLine();
 
@@ -146,24 +160,25 @@ public class Main {
                 }
 
                 //Show JSON data
-                System.out.println("IP: " + hostname + ", " + ip + ":" + port);
+                System.out.println(C_CYAN + "IP: " + C_YELLOW + hostname + C_CYAN + ", " + C_YELLOW + ip + C_CYAN + ":" + C_YELLOW + port);
                 System.out.println(" ");
-                System.out.println("Wersja: " + software + " | " + ver);
+                System.out.println(C_CYAN + "Wersja: " + C_YELLOW + software + C_CYAN + " | " + C_YELLOW + ver);
                 System.out.println(" ");
-                System.out.println("Online: " + isOnline);
+                System.out.println(C_CYAN + "Online: " + C_YELLOW + isOnline);
                 System.out.println(" ");
-                System.out.println("Protokół: " + prot);
+                System.out.println(C_CYAN + "Protokół: " + C_YELLOW + prot);
                 System.out.println(" ");
-                System.out.println("MOTD: " + motdCl);
+                System.out.println(C_CYAN + "MOTD: " + C_YELLOW + motdCl);
                 System.out.println(" ");
-                System.out.println("Debug: ");
-                System.out.println("   Query: " + debugQuery);
+                System.out.println(C_CYAN + "Debug: ");
+                System.out.println(C_CYAN + "   Query: " + C_YELLOW + debugQuery);
                 System.out.println(" ");
-                System.out.println("Gracze aktualnie na serwerze: " + plOnline);
+                System.out.println(C_CYAN + "Gracze aktualnie na serwerze: " + C_YELLOW + plOnline);
                 System.out.println(" ");
+                System.out.println(C_RED + "-(Koniec polecenia)-");
             } else {
-                System.out.println("Zła wartość!");
-                System.out.println("Nie rozumiem.");
+                System.out.println(C_RED + "Zła wartość!");
+                System.out.println(C_RED + "Nie rozumiem.");
             }
         }
     }
