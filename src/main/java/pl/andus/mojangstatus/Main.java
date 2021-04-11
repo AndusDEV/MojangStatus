@@ -35,7 +35,7 @@ public class Main {
             System.out.println(C_CYAN + "MojangStatus v1.1.2");
             System.out.println(C_PURPLE + "Co chcesz zobaczyć?");
             System.out.println(C_PURPLE + "(Status Mojang, Gracz, Serwer Minecraft)");
-            System.out.println(C_PURPLE + "(Możesz też napisać to krócej: SM, Gr, MC)");
+            System.out.println(C_PURPLE + "(Możesz też napisać to krócej: SM, Gr, MC)" + C_GREEN);
 
             String wpisane = scanner.nextLine();
 
@@ -48,12 +48,12 @@ public class Main {
                 System.out.println(C_RED + "-(Koniec polecenia)-");
             } else if (wpisane.equals("Gracz")||wpisane.equals("Gr")) {
                 System.out.println(C_PURPLE + "Jak chcesz znaleźć gracza?");
-                System.out.println(C_PURPLE + "(UUID, Nick)");
+                System.out.println(C_PURPLE + "(UUID, Nick)" + C_GREEN);
 
                 String UUIDorName = scanner.nextLine();
 
                 if (UUIDorName.equals("Nick")) {
-                    System.out.println(C_PURPLE + "Podaj nazwę gracza:");
+                    System.out.println(C_PURPLE + "Podaj nazwę gracza:" + C_GREEN);
 
                     String graczName = scanner.nextLine();
 
@@ -66,7 +66,7 @@ public class Main {
                     System.out.println(C_RED + "-(Koniec polecenia)-");
 
                 } else if (UUIDorName.equals("UUID")) {
-                    System.out.println("Podaj UUID gracza:");
+                    System.out.println(C_PURPLE + "Podaj UUID gracza:" + C_GREEN);
 
                     String graczUUID = scanner.nextLine();
 
@@ -82,7 +82,7 @@ public class Main {
                     System.out.println(C_RED + "Nie rozumiem.");
                 }
             } else if (wpisane.equals("Serwer Minecraft")||wpisane.equals("MC")){
-                System.out.println(C_PURPLE + "Podaj IP serwera:");
+                System.out.println(C_PURPLE + "Podaj IP serwera:" + C_GREEN);
 
                 String srvURL = "https://api.mcsrvstat.us/2/" + scanner.nextLine();
 
