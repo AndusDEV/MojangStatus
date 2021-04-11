@@ -40,7 +40,7 @@ public class Main {
             String wpisane = scanner.nextLine();
 
             if (wpisane.equals("Status Mojang")||wpisane.equals("SM")) {
-                final String status = null;
+                final String status = null; //Not used for now
                 System.out.println(C_CYAN + "Status Serwerów Mojang: ");
                 System.out.println(" ");
                 MojangAPI.getStatus().forEach((url, state) ->
