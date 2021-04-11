@@ -11,7 +11,7 @@
  
 3.Cd into the folder you downloaded jar file
  
-4.Run file with: 'java -jar MojangStatus.jar' ("MojangStatus.jar" if you didn't changed the file name)
+4.Run file with: `java -jar MojangStatus.jar` ("MojangStatus.jar" if you didn't changed the file name)
  
 5.That's it! Now just follow program instructions, and you're ready to go!
 
