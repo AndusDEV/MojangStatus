@@ -32,7 +32,7 @@ public class Main {
         int i = 0;
         while (i < 5) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println(C_CYAN + "MojangStatus v1.1.2");
+            System.out.println(C_CYAN + "MojangStatus v1.1.3");
             System.out.println(C_PURPLE + "Co chcesz zobaczyć?");
             System.out.println(C_PURPLE + "(Status Mojang, Gracz, Serwer Minecraft)");
             System.out.println(C_PURPLE + "(Możesz też napisać to krócej: SM, Gr, MC)" + C_GREEN);
@@ -114,9 +114,14 @@ public class Main {
                 String debug = new String(String.valueOf(debugJson));
                 String debugQuery = null;
                 //players
+                //online
                 JsonElement playersJson = jsonObj.get("players");
                 String players = new String(String.valueOf(playersJson));
                 String plOnline;
+                //max
+                JsonElement playersJson2 = jsonObj.get("players");
+                String players2 = new String(String.valueOf(playersJson2));
+                String plMax;
 
 
                 //If there is no software info:
@@ -152,11 +157,17 @@ public class Main {
                     }
                 }
                 //If players contains max & online:
-                if (players.contains("online") || players.contains("max")) {
+                if (players.contains("online")) {
                     players = players.substring(players.indexOf("\"online\":"), players.lastIndexOf(",\"max"));
                     plOnline = players.replace("\"online\":", "");
                 } else {
                     plOnline = "brak danych";
+                }
+                if (players2.contains("max")) {
+                    players2 = players2.substring(players2.indexOf("\"max\":"), players2.lastIndexOf("}"));
+                    plMax = players2.replace("\"max\":", "");
+                } else {
+                    plMax = "brak danych";
                 }
 
                 //Show JSON data
@@ -166,14 +177,14 @@ public class Main {
                 System.out.println(" ");
                 System.out.println(C_CYAN + "Online: " + C_YELLOW + isOnline);
                 System.out.println(" ");
-                System.out.println(C_CYAN + "Protokół: " + C_YELLOW + prot);
+                System.out.println(C_CYAN + "Gracze aktualnie na serwerze: " + C_YELLOW + plOnline + C_CYAN + "/" + C_YELLOW + plMax);
                 System.out.println(" ");
                 System.out.println(C_CYAN + "MOTD: " + C_YELLOW + motdCl);
                 System.out.println(" ");
+                System.out.println(C_CYAN + "Protokół: " + C_YELLOW + prot);
+                System.out.println(" ");
                 System.out.println(C_CYAN + "Debug: ");
                 System.out.println(C_CYAN + "   Query: " + C_YELLOW + debugQuery);
-                System.out.println(" ");
-                System.out.println(C_CYAN + "Gracze aktualnie na serwerze: " + C_YELLOW + plOnline);
                 System.out.println(" ");
                 System.out.println(C_RED + "-(Koniec polecenia)-");
             } else {
