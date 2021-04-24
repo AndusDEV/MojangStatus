@@ -5,15 +5,19 @@
  
  # Installation:
  
-1.Download [latest release](https://github.com/AndusDEV/MojangStatus/releases)
+ ## Requirements:
+ - Java.
+   [Here's how to install it](https://github.com/AndusDEV/MojangStatus/wiki/How-to-install-Java)
+ ## Installation:
+  1.Download [latest release](https://github.com/AndusDEV/MojangStatus/releases)
  
-2.Open cmd
+  2.Open cmd
  
-3.Cd into the folder you downloaded jar file
+  3.Cd into the folder you downloaded jar file
  
-4.Run file with: `java -jar MojangStatus.jar` ("MojangStatus.jar" if you didn't changed the file name)
+  4.Run file with: `java -jar MojangStatus.jar` ("MojangStatus.jar" if you didn't changed the file name)
  
-5.That's it! Now just follow program instructions, and you're ready to go!
+  5.That's it! Now just follow program instructions, and you're ready to go!
 
 
 ## UUID - How it works?
